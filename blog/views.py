@@ -10,8 +10,14 @@ from django.views.generic import ListView , DetailView , CreateView , UpdateView
 class PostList(ListView): #django make tmplate auto = post_list name data and action (list) "defult django project"
     model = Post          # context ===> post_list , or object_list   "defult django project"
 
-class PostDetail(DetailView):
-    model = Post
+#class PostDetail(DetailView):
+#    model = Post
+def post_detail(request,pk):
+    data = Post.objects.get(id=pk)
+    return render(request,'blog/post_detail.html',{'post':data})
+
+
+
 
 class PostCreate(CreateView):
     model = Post
